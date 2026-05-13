@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wellington Rich List | Wellington Ratepayers' Alliance</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Cpath d='M14 18h36v8H14zm0 12h36v8H14zm0 12h24v8H14z' fill='%23d6ad43'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+
+    <main aria-labelledby="page-title">
+      <section class="hero">
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <div class="hero-brand">
+              <img src="assets/wra-logo.svg" alt="Wellington Ratepayers' Alliance" class="hero-logo">
+            </div>
+            <p class="kicker">Wellington City Council</p>
+            <h1 id="page-title">Rich List</h1>
+            <p class="subtitle">Senior staff salary mid-points from council staffing data.</p>
+          </div>
+          <div class="hero-stats" aria-label="Rich list summary">
+            <div>
+              <span id="staff-count">35</span>
+              <small>staff listed</small>
+            </div>
+            <div>
+              <span id="top-pay">$440,000</span>
+              <small>highest midpoint</small>
+            </div>
+            <div>
+              <span id="total-pay">$0</span>
+              <small>combined midpoints</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="list-section" aria-label="Wellington rich list">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">The List</p>
+            <h2>Who sits at the top</h2>
+          </div>
+          <p id="list-summary"></p>
+        </div>
+
+        <section class="featured" id="featured-list" aria-label="Highest paid staff"></section>
+        <section class="staff-grid" id="staff-list" aria-label="Staff rich list"></section>
+      </section>
+
+      <section class="methodology" aria-labelledby="methodology-title">
+        <div class="methodology-inner">
+          <h2 id="methodology-title">Methodology</h2>
+          <div class="methodology-body">
+            <p>Data is sourced from Wellington City Council's annual remuneration disclosure, which councils are required to publish under the Local Government Act 2002. Under this requirement, councils must report the number of employees in each $20,000 salary band.</p>
+            <p>This list uses the <strong>mid-point of each reported salary band</strong> as the basis for comparison and ranking. Where an employee's name and role could be identified from publicly available sources — including the council's own website, annual reports, and meeting minutes — that information has been included.</p>
+            <p>Salary figures are for the year ended <strong>30 June 2024</strong>. Not all positions in each band could be identified by name; unnamed positions are excluded from this list.</p>
+            <p class="methodology-note">A research project by the <strong>Wellington Ratepayers' Alliance</strong>, a Taxpayers' Union supported project. Authorised by Wellington Ratepayers' Alliance, PO Box 10518, Wellington 6140.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-about">
+          <div class="wra-brand">
+            <img src="assets/wra-logo.svg" alt="Wellington Ratepayers' Alliance" class="wra-logo">
+            <div>
+              <strong class="wra-name">Wellington Ratepayers' Alliance</strong>
+              <small class="wra-tagline">Holding Wellington to account</small>
+            </div>
+          </div>
+          <p>Championing value for money from every ratepayer dollar.</p>
+        </div>
+        <nav aria-label="Wellington Ratepayers' Alliance links">
+          <h3>Ratepayers' Alliance</h3>
+          <a href="https://www.wellingtonratepayers.nz/">Home</a>
+          <a href="https://www.wellingtonratepayers.nz/about">About</a>
+          <a href="https://www.wellingtonratepayers.nz/campaigns">Campaigns</a>
+          <a href="https://www.wellingtonratepayers.nz/news">News</a>
+        </nav>
+        <nav aria-label="Support links">
+          <h3>Get Involved</h3>
+          <a href="https://www.wellingtonratepayers.nz/sign_up">Sign up</a>
+          <a href="https://www.wellingtonratepayers.nz/donate">Donate</a>
+          <a href="https://www.wellingtonratepayers.nz/contact">Contact Us</a>
+          <a href="https://www.wellingtonratepayers.nz/privacy">Privacy Policy</a>
+        </nav>
+      </div>
+      <div class="footer-legal">
+        <span>Copyright © Wellington Ratepayers' Alliance. All rights reserved.</span>
+        <span>Ratepayers' Alliance™ is used under licence from the New Zealand Taxpayers' Union.</span>
+        <span>Authorised by Wellington Ratepayers' Alliance, PO Box 10518, Wellington 6140.</span>
+      </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Person detail" hidden>
+      <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+      <div class="lightbox-panel">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Close">&#x2715;</button>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="">
+        <div class="lightbox-info">
+          <div class="lightbox-name" id="lightbox-name"></div>
+          <div class="lightbox-role" id="lightbox-role"></div>
+          <div class="lightbox-group" id="lightbox-group"></div>
+          <div class="lightbox-pay" id="lightbox-pay"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="staff-data.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
