@@ -74,11 +74,11 @@ a {
 }
 
 .hero-brand {
-  margin-bottom: 22px;
+  margin-bottom: 28px;
 }
 
 .hero-logo {
-  height: 110px;
+  height: 68px;
   width: auto;
 }
 
@@ -89,6 +89,18 @@ a {
   font-size: clamp(0.78rem, 1.1vw, 1rem);
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+/* Hero kicker — make council name big and bold */
+.hero-copy .kicker {
+  display: inline-block;
+  color: var(--gold-soft);
+  font-size: clamp(1.15rem, 2vw, 1.7rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(214, 173, 67, 0.4);
 }
 
 h1,
@@ -632,13 +644,16 @@ h1 {
     font-size: clamp(4.2rem, 22vw, 7rem);
   }
 
-  .featured,
+  /* Top 3 stay in a centred row on mobile */
+  .featured {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px 12px;
+    margin-bottom: 36px;
+    justify-items: center;
+  }
+
   .staff-grid {
     grid-template-columns: repeat(2, minmax(140px, 1fr));
     gap: 36px 22px;
-  }
-
-  .featured {
-    margin-bottom: 36px;
   }
 }
