@@ -18,7 +18,7 @@
             </div>
             <p class="kicker">Wellington City Council</p>
             <h1 id="page-title">Rich List</h1>
-            <p class="subtitle">Senior staff salary mid-points from council staffing data.</p>
+            <p class="subtitle">Which council bureaucrats are being paid over $200k?</p>
           </div>
           <div class="hero-stats" aria-label="Rich list summary">
             <div>
@@ -40,7 +40,6 @@
       <section class="list-section" aria-label="Wellington rich list">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">The List</p>
             <h2>Who sits at the top</h2>
           </div>
           <p id="list-summary"></p>
@@ -104,12 +103,16 @@
           <img src="assets/wra-logo.svg" alt="Wellington Ratepayers' Alliance" height="52">
         </div>
         <p class="lgpop-eyebrow">Free access</p>
-        <h2 class="lgpop-title" id="lgpop-title">Register your interest to continue</h2>
-        <p class="lgpop-body">Enter your details below to access the full Wellington Rich List and receive updates from the Wellington Ratepayers' Alliance.</p>
+        <h2 class="lgpop-title" id="lgpop-title">Care about your rates bill?</h2>
+        <p class="lgpop-body">Enter your details to access the full Wellington Rich List and stay updated from the Wellington Ratepayers' Alliance.</p>
         <form class="lgpop-form" id="lgpop-form" novalidate>
           <div class="lgpop-row">
-            <input class="lgpop-input" id="lgpop-name" type="text" name="first_name" placeholder="First name" autocomplete="given-name">
+            <input class="lgpop-input" id="lgpop-firstname" type="text" name="first_name" placeholder="First name" autocomplete="given-name">
+            <input class="lgpop-input" id="lgpop-lastname" type="text" name="last_name" placeholder="Last name" autocomplete="family-name">
+          </div>
+          <div class="lgpop-row">
             <input class="lgpop-input" id="lgpop-email" type="email" name="email" placeholder="Email address" autocomplete="email" required>
+            <input class="lgpop-input" id="lgpop-postcode" type="text" name="postcode" placeholder="Postcode" autocomplete="postal-code" inputmode="numeric" maxlength="4">
           </div>
           <button class="lgpop-submit" type="submit">Access the full list &rarr;</button>
           <p class="lgpop-error" id="lgpop-error" hidden>Please enter a valid email address.</p>

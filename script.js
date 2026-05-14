@@ -148,8 +148,10 @@ lgpopDismiss.addEventListener("click", () => hidePopup(true));
 
 lgpopForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const email = document.getElementById("lgpop-email").value.trim();
-  const firstName = document.getElementById("lgpop-name").value.trim();
+  const email     = document.getElementById("lgpop-email").value.trim();
+  const firstName = document.getElementById("lgpop-firstname").value.trim();
+  const lastName  = document.getElementById("lgpop-lastname").value.trim();
+  const postcode  = document.getElementById("lgpop-postcode").value.trim();
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     lgpopError.hidden = false;
@@ -159,7 +161,7 @@ lgpopForm.addEventListener("submit", (e) => {
 
   // 1. Save locally as backup
   const leads = JSON.parse(localStorage.getItem("wrl_leads") || "[]");
-  leads.push({ firstName, email, ts: new Date().toISOString() });
+  leads.push({ firstName, lastName, email, postcode, ts: new Date().toISOString() });
   localStorage.setItem("wrl_leads", JSON.stringify(leads));
 
   // 2. Submit to NationBuilder via hidden form (fire-and-forget)
@@ -174,7 +176,12 @@ lgpopForm.addEventListener("submit", (e) => {
   form.target = "nb-frame";
   form.style.display = "none";
 
-  [["signup[email]", email], ["signup[first_name]", firstName]].forEach(([n, v]) => {
+  [
+    ["signup[email]",      email],
+    ["signup[first_name]", firstName],
+    ["signup[last_name]",  lastName],
+    ["signup[zip]",        postcode],
+  ].forEach(([n, v]) => {
     const inp = document.createElement("input");
     inp.type = "hidden"; inp.name = n; inp.value = v;
     form.appendChild(inp);
