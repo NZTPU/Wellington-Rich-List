@@ -399,20 +399,21 @@ h1 {
   display: grid;
   grid-template-columns: minmax(280px, 1.6fr) repeat(2, minmax(150px, 0.7fr));
   gap: clamp(28px, 5vw, 72px);
-  padding-top: clamp(42px, 6vw, 72px);
-  padding-bottom: 34px;
+  padding-top: clamp(52px, 7vw, 90px);
+  padding-bottom: clamp(42px, 5vw, 64px);
+  align-items: center;
 }
 
 .wra-brand {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
   margin-bottom: 18px;
 }
 
 .wra-logo {
-  width: 52px;
-  height: 52px;
+  width: 72px;
+  height: 72px;
   flex-shrink: 0;
 }
 
@@ -420,7 +421,7 @@ h1 {
   display: block;
   color: var(--gold-soft);
   font-family: Didot, "Bodoni 72", Georgia, serif;
-  font-size: 1.1rem;
+  font-size: 1.45rem;
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: 0.02em;
@@ -428,9 +429,9 @@ h1 {
 
 .wra-tagline {
   display: block;
-  margin-top: 3px;
+  margin-top: 5px;
   color: var(--muted);
-  font-size: 0.74rem;
+  font-size: 0.82rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
