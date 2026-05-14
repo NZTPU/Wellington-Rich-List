@@ -188,7 +188,6 @@ window.addEventListener("resize", () => { if (particleRaf) resizeCanvas(); });
 /* ── Lead gen popup ────────────────────────────────── */
 
 const lgpop       = document.getElementById("lgpop");
-const lgpopClose  = document.getElementById("lgpop-close");
 const lgpopDismiss= document.getElementById("lgpop-dismiss");
 const lgpopForm   = document.getElementById("lgpop-form");
 const lgpopError  = document.getElementById("lgpop-error");
@@ -224,7 +223,6 @@ window.addEventListener("scroll", () => {
   }
 }, { passive: true });
 
-lgpopClose.addEventListener("click",   () => hidePopup(true));
 lgpopDismiss.addEventListener("click", () => hidePopup(true));
 
 lgpopForm.addEventListener("submit", (e) => {
