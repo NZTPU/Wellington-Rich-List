@@ -110,6 +110,89 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && !lightbox.hidden) closeLightbox();
 });
 
+/* ── Lead gen popup ────────────────────────────────── */
+
+const lgpop       = document.getElementById("lgpop");
+const lgpopClose  = document.getElementById("lgpop-close");
+const lgpopDismiss= document.getElementById("lgpop-dismiss");
+const lgpopForm   = document.getElementById("lgpop-form");
+const lgpopError  = document.getElementById("lgpop-error");
+const lgpopThanks = document.getElementById("lgpop-thanks");
+
+const NB_SUBSCRIBE_URL = "https://taxpayers.nationbuilder.com/subscribe";
+const POPUP_KEY = "wrl_popup_seen";
+
+function showPopup() {
+  if (sessionStorage.getItem(POPUP_KEY)) return;
+  lgpop.hidden = false;
+  // small delay so the transition fires
+  requestAnimationFrame(() => requestAnimationFrame(() => lgpop.classList.add("is-visible")));
+}
+
+function hidePopup(remember) {
+  lgpop.hidden = true;
+  if (remember) sessionStorage.setItem(POPUP_KEY, "1");
+}
+
+// Show after 60% scroll depth
+let popupFired = false;
+window.addEventListener("scroll", () => {
+  if (popupFired || sessionStorage.getItem(POPUP_KEY)) return;
+  const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  if (scrolled >= 0.6) {
+    popupFired = true;
+    setTimeout(showPopup, 600);
+  }
+}, { passive: true });
+
+lgpopClose.addEventListener("click",   () => hidePopup(true));
+lgpopDismiss.addEventListener("click", () => hidePopup(true));
+
+lgpopForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const email = document.getElementById("lgpop-email").value.trim();
+  const firstName = document.getElementById("lgpop-name").value.trim();
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    lgpopError.hidden = false;
+    return;
+  }
+  lgpopError.hidden = true;
+
+  // 1. Save locally as backup
+  const leads = JSON.parse(localStorage.getItem("wrl_leads") || "[]");
+  leads.push({ firstName, email, ts: new Date().toISOString() });
+  localStorage.setItem("wrl_leads", JSON.stringify(leads));
+
+  // 2. Submit to NationBuilder via hidden form (fire-and-forget)
+  const iframe = Object.assign(document.createElement("iframe"), {
+    name: "nb-frame", style: "display:none"
+  });
+  document.body.appendChild(iframe);
+
+  const form = document.createElement("form");
+  form.method = "POST";
+  form.action = NB_SUBSCRIBE_URL;
+  form.target = "nb-frame";
+  form.style.display = "none";
+
+  [["signup[email]", email], ["signup[first_name]", firstName]].forEach(([n, v]) => {
+    const inp = document.createElement("input");
+    inp.type = "hidden"; inp.name = n; inp.value = v;
+    form.appendChild(inp);
+  });
+
+  document.body.appendChild(form);
+  form.submit();
+  setTimeout(() => { form.remove(); iframe.remove(); }, 5000);
+
+  // 3. Show thank-you
+  lgpopForm.style.display = "none";
+  lgpopThanks.hidden = false;
+  lgpopDismiss.textContent = "Close";
+  setTimeout(() => hidePopup(true), 3500);
+});
+
 /* ── Init ──────────────────────────────────────────── */
 
 renderSummary();
