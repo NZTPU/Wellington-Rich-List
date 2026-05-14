@@ -480,6 +480,21 @@ h1 {
   flex: 1 1 300px;
 }
 
+/* ── Gold border particles ───────────────────────────── */
+
+#gold-particles {
+  position: fixed;
+  inset: 0;
+  z-index: 89;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+#gold-particles.is-active {
+  opacity: 1;
+}
+
 /* ── Lead gen popup ──────────────────────────────────── */
 
 .lgpop {

@@ -110,6 +110,81 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && !lightbox.hidden) closeLightbox();
 });
 
+/* ── Gold border particles ─────────────────────────── */
+
+const particleCanvas = document.getElementById("gold-particles");
+const pctx = particleCanvas.getContext("2d");
+let particles = [];
+let particleRaf = null;
+
+function resizeCanvas() {
+  particleCanvas.width  = window.innerWidth;
+  particleCanvas.height = window.innerHeight;
+}
+
+function makeParticle() {
+  const edge   = Math.floor(Math.random() * 4); // 0=top 1=right 2=bottom 3=left
+  const border = 70; // px from edge
+  let x, y;
+  if (edge === 0) { x = Math.random() * window.innerWidth;  y = Math.random() * border; }
+  if (edge === 1) { x = window.innerWidth  - Math.random() * border; y = Math.random() * window.innerHeight; }
+  if (edge === 2) { x = Math.random() * window.innerWidth;  y = window.innerHeight - Math.random() * border; }
+  if (edge === 3) { x = Math.random() * border; y = Math.random() * window.innerHeight; }
+  return {
+    x, y,
+    r:   Math.random() * 1.8 + 0.6,
+    vx:  (Math.random() - 0.5) * 0.35,
+    vy:  (Math.random() - 0.5) * 0.35,
+    a:   Math.random() * 0.5 + 0.15,
+    da:  (Math.random() - 0.5) * 0.004,
+    life: 0,
+    maxLife: 180 + Math.random() * 180,
+  };
+}
+
+function initParticles() {
+  resizeCanvas();
+  particles = Array.from({ length: 90 }, makeParticle);
+}
+
+function tickParticles() {
+  pctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+  particles.forEach((p, i) => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.a += p.da;
+    p.a  = Math.max(0.05, Math.min(0.7, p.a));
+    p.life++;
+
+    // fade in/out
+    const progress = p.life / p.maxLife;
+    const fade = progress < 0.15 ? progress / 0.15
+               : progress > 0.75 ? 1 - (progress - 0.75) / 0.25 : 1;
+
+    pctx.beginPath();
+    pctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    pctx.fillStyle = `rgba(214, 173, 67, ${p.a * fade})`;
+    pctx.fill();
+
+    if (p.life >= p.maxLife) particles[i] = makeParticle();
+  });
+  particleRaf = requestAnimationFrame(tickParticles);
+}
+
+function startParticles() {
+  initParticles();
+  particleCanvas.classList.add("is-active");
+  if (!particleRaf) tickParticles();
+}
+
+function stopParticles() {
+  particleCanvas.classList.remove("is-active");
+  if (particleRaf) { cancelAnimationFrame(particleRaf); particleRaf = null; }
+  pctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+}
+
+window.addEventListener("resize", () => { if (particleRaf) resizeCanvas(); });
+
 /* ── Lead gen popup ────────────────────────────────── */
 
 const lgpop       = document.getElementById("lgpop");
@@ -124,13 +199,17 @@ const POPUP_KEY = "wrl_popup_seen";
 
 function showPopup() {
   if (sessionStorage.getItem(POPUP_KEY)) return;
+  // Lock scroll
+  document.body.style.overflow = "hidden";
   lgpop.hidden = false;
-  // small delay so the transition fires
-  requestAnimationFrame(() => requestAnimationFrame(() => lgpop.classList.add("is-visible")));
+  startParticles();
 }
 
 function hidePopup(remember) {
   lgpop.hidden = true;
+  // Restore scroll
+  document.body.style.overflow = "";
+  stopParticles();
   if (remember) sessionStorage.setItem(POPUP_KEY, "1");
 }
 
