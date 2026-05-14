@@ -248,7 +248,7 @@ window.STAFF = [
     "image": "assets/staff/sean-audain.webp"
   },
   {
-    "name": "Kayrn Basher",
+    "name": "Karyn Basher",
     "position": "General Counsel",
     "salary": 210000,
     "salaryLabel": "$210,000",
