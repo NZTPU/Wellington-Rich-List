@@ -134,14 +134,14 @@ function hidePopup(remember) {
   if (remember) sessionStorage.setItem(POPUP_KEY, "1");
 }
 
-// Show after 60% scroll depth
+// Show after 15% scroll depth
 let popupFired = false;
 window.addEventListener("scroll", () => {
   if (popupFired || sessionStorage.getItem(POPUP_KEY)) return;
   const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-  if (scrolled >= 0.6) {
+  if (scrolled >= 0.15) {
     popupFired = true;
-    setTimeout(showPopup, 600);
+    setTimeout(showPopup, 400);
   }
 }, { passive: true });
 

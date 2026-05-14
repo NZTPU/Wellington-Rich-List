@@ -484,36 +484,52 @@ h1 {
 
 .lgpop {
   position: fixed;
-  bottom: 28px;
-  left: 50%;
-  transform: translateX(-50%) translateY(20px);
+  inset: 0;
   z-index: 90;
-  width: min(560px, calc(100vw - 32px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
   opacity: 0;
-  transition: opacity 320ms ease, transform 320ms ease;
+  transition: opacity 380ms ease;
   pointer-events: none;
+}
+
+.lgpop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(3px);
 }
 
 .lgpop:not([hidden]) {
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
   pointer-events: auto;
 }
 
 .lgpop[hidden] {
-  display: block !important; /* override hidden so transition works */
+  display: flex !important;
   opacity: 0;
   pointer-events: none;
 }
 
 .lgpop-inner {
   position: relative;
-  padding: 28px 32px 24px;
+  z-index: 1;
+  width: min(560px, 100%);
+  padding: 36px 38px 28px;
   background: #0a0a0a;
   border: 1px solid var(--gold);
   box-shadow:
-    0 0 0 4px rgba(214, 173, 67, 0.1),
-    0 24px 60px rgba(0, 0, 0, 0.8);
+    0 0 0 5px rgba(214, 173, 67, 0.12),
+    0 32px 80px rgba(0, 0, 0, 0.9);
+  transform: translateY(16px);
+  transition: transform 380ms ease;
+}
+
+.lgpop:not([hidden]) .lgpop-inner {
+  transform: translateY(0);
 }
 
 .lgpop-close {
@@ -539,13 +555,22 @@ h1 {
   margin-bottom: 14px;
 }
 
+.lgpop-eyebrow {
+  margin: 0 0 10px;
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
 .lgpop-title {
-  margin: 0 0 8px;
-  color: var(--gold-soft);
+  margin: 0 0 10px;
+  color: var(--cream);
   font-family: Didot, "Bodoni 72", Georgia, serif;
-  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 500;
-  line-height: 1;
+  line-height: 1.05;
 }
 
 .lgpop-body {
