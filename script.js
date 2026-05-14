@@ -65,7 +65,7 @@ function renderPeople() {
   staff.slice(3).forEach((person) => staffList.append(personCard(person)));
 
   const total = staff.reduce((sum, person) => sum + person.salary, 0);
-  listSummary.textContent = `${staff.length} staff shown, with combined salary mid-points of ${formatCurrency(total)}.`;
+  listSummary.textContent = `${staff.length} staff shown, with combined salaries of ${formatCurrency(total)}.`;
 }
 
 function renderSummary() {

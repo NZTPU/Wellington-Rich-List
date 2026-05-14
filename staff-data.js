@@ -1,9 +1,9 @@
 window.STAFF = [
   {
     "name": "Matt Prosser",
-    "position": "Chief Executive Officer",
-    "salary": 440000,
-    "salaryLabel": "$440,000",
+    "position": "Town Clerk (CEO)",
+    "salary": 531616,
+    "salaryLabel": "$531,616",
     "group": "Executive Leadership",
     "image": "assets/staff/matt-prosser.webp"
   },
