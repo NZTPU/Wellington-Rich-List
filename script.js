@@ -123,11 +123,11 @@ const POPUP_KEY = "wrl_popup_seen";
 function showPopup() {
   if (sessionStorage.getItem(POPUP_KEY)) return;
   document.body.style.overflow = "hidden";
-  lgpop.hidden = false;
+  lgpop.classList.add("is-open");
 }
 
 function hidePopup(remember) {
-  lgpop.hidden = true;
+  lgpop.classList.remove("is-open");
   document.body.style.overflow = "";
   if (remember) sessionStorage.setItem(POPUP_KEY, "1");
 }

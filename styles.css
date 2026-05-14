@@ -490,13 +490,14 @@ h1 {
   position: fixed;
   inset: 0;
   z-index: 90;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   padding: 16px;
-  opacity: 0;
-  transition: opacity 380ms ease;
-  pointer-events: none;
+}
+
+.lgpop.is-open {
+  display: flex;
 }
 
 .lgpop::before {
@@ -505,17 +506,6 @@ h1 {
   inset: 0;
   background: rgba(0, 0, 0, 0.78);
   backdrop-filter: blur(3px);
-}
-
-.lgpop:not([hidden]) {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.lgpop[hidden] {
-  display: flex !important;
-  opacity: 0;
-  pointer-events: none;
 }
 
 .lgpop-inner {
@@ -528,12 +518,6 @@ h1 {
   box-shadow:
     0 0 0 5px rgba(214, 173, 67, 0.12),
     0 32px 80px rgba(0, 0, 0, 0.9);
-  transform: translateY(16px);
-  transition: transform 380ms ease;
-}
-
-.lgpop:not([hidden]) .lgpop-inner {
-  transform: translateY(0);
 }
 
 .lgpop-close {
