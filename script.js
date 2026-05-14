@@ -85,8 +85,7 @@ const lightboxImg = document.getElementById("lightbox-img");
 const lightboxName = document.getElementById("lightbox-name");
 const lightboxRole = document.getElementById("lightbox-role");
 const lightboxGroup = document.getElementById("lightbox-group");
-const lightboxPay   = document.getElementById("lightbox-pay");
-const lightboxShare = document.getElementById("lightbox-share");
+const lightboxPay = document.getElementById("lightbox-pay");
 
 function openLightbox(person) {
   lightboxImg.src = `${person.image}?v=${ASSET_VERSION}`;
@@ -95,8 +94,6 @@ function openLightbox(person) {
   lightboxRole.textContent = person.position;
   lightboxGroup.textContent = person.group;
   lightboxPay.textContent = person.salaryLabel;
-  const tweet = `${person.name}, ${person.position} at Wellington City Council is paid ${person.salaryLabel}. See the Wellington Rich List:`;
-  lightboxShare.href = `https://x.com/intent/tweet?text=${encodeURIComponent(tweet)}&url=${encodeURIComponent("https://nztpu.github.io/Wellington-Rich-List/")}`;
   lightbox.hidden = false;
   document.body.style.overflow = "hidden";
   lightboxClose.focus();

@@ -760,27 +760,6 @@ h1 {
   font-size: 1.75rem;
   font-weight: 900;
   line-height: 1;
-  margin-bottom: 16px;
-}
-
-.lightbox-share {
-  display: inline-block;
-  margin-top: 4px;
-  padding: 8px 18px;
-  background: transparent;
-  border: 1px solid rgba(214, 173, 67, 0.45);
-  color: var(--muted);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: border-color 160ms, color 160ms;
-}
-
-.lightbox-share:hover {
-  border-color: var(--gold);
-  color: var(--gold-soft);
 }
 
 /* ── Responsive ─────────────────────────────────────── */
