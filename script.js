@@ -1,6 +1,5 @@
 const featuredList = document.querySelector("#featured-list");
 const staffList = document.querySelector("#staff-list");
-const listSummary = document.querySelector("#list-summary");
 const staffCount = document.querySelector("#staff-count");
 const topPay = document.querySelector("#top-pay");
 const totalPay = document.querySelector("#total-pay");
@@ -64,8 +63,6 @@ function renderPeople() {
   staff.slice(0, 3).forEach((person) => featuredList.append(personCard(person)));
   staff.slice(3).forEach((person) => staffList.append(personCard(person)));
 
-  const total = staff.reduce((sum, person) => sum + person.salary, 0);
-  listSummary.textContent = `${staff.length} staff shown, with combined salaries of ${formatCurrency(total)}.`;
 }
 
 function renderSummary() {
