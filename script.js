@@ -113,7 +113,6 @@ document.addEventListener("keydown", (e) => {
 /* ── Lead gen popup ────────────────────────────────── */
 
 const lgpop       = document.getElementById("lgpop");
-const lgpopDismiss= document.getElementById("lgpop-dismiss");
 const lgpopForm   = document.getElementById("lgpop-form");
 const lgpopError  = document.getElementById("lgpop-error");
 const lgpopThanks = document.getElementById("lgpop-thanks");
@@ -143,8 +142,6 @@ window.addEventListener("scroll", () => {
     setTimeout(showPopup, 400);
   }
 }, { passive: true });
-
-lgpopDismiss.addEventListener("click", () => hidePopup(true));
 
 lgpopForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -191,10 +188,9 @@ lgpopForm.addEventListener("submit", (e) => {
   form.submit();
   setTimeout(() => { form.remove(); iframe.remove(); }, 5000);
 
-  // 3. Show thank-you
+  // 3. Show thank-you then close
   lgpopForm.style.display = "none";
   lgpopThanks.hidden = false;
-  lgpopDismiss.textContent = "Close";
   setTimeout(() => hidePopup(true), 3500);
 });
 
