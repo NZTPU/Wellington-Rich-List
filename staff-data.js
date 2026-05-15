@@ -200,12 +200,12 @@ window.STAFF = [
     "image": "assets/staff/kevin-black.webp"
   },
   {
-    "name": "Mededith Keys",
+    "name": "Meredith Keys",
     "position": "Manager Communications and Creative",
     "salary": 210000,
     "salaryLabel": "$210,000",
     "group": "Economic and Engagement",
-    "image": "assets/staff/mededith-keys.webp"
+    "image": "assets/staff/meredith-keys.webp"
   },
   {
     "name": "Michael Nyamudeza",
