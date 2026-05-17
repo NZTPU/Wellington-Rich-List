@@ -72,14 +72,6 @@ window.STAFF = [
     "image": "assets/staff/matt-tuffin.webp"
   },
   {
-    "name": "Antony Cameron",
-    "position": "Project Director",
-    "salary": 280000,
-    "salaryLabel": "$280,000",
-    "group": "Infrastructure & Delivery",
-    "image": "assets/staff/antony-cameron.webp"
-  },
-  {
     "name": "Iestyn Burke",
     "position": "Manager Property and Capital Projects",
     "salary": 280000,
@@ -160,12 +152,12 @@ window.STAFF = [
     "image": "assets/staff/alison-howard.webp"
   },
   {
-    "name": "Carrie Mckenzie",
+    "name": "Phil Becker",
     "position": "Manager City Development and Emergency Management",
     "salary": 230000,
     "salaryLabel": "$230,000",
     "group": "Planning and Environment",
-    "image": "assets/staff/carrie-mckenzie.webp"
+    "image": "assets/staff/phil-becker.webp"
   },
   {
     "name": "Baz Kaufman",
@@ -278,5 +270,13 @@ window.STAFF = [
     "salaryLabel": "$210,000",
     "group": "Strategy and Finance",
     "image": "assets/staff/sarah-houston-eastergaard.webp"
+  },
+  {
+    "name": "Andrew Little",
+    "position": "Mayor",
+    "salary": 201947,
+    "salaryLabel": "$201,947",
+    "group": "Mayor's Office",
+    "image": "assets/staff/andrew-little.webp"
   }
 ];
