@@ -114,7 +114,7 @@ const lgpopForm   = document.getElementById("lgpop-form");
 const lgpopError  = document.getElementById("lgpop-error");
 const lgpopThanks = document.getElementById("lgpop-thanks");
 
-const NB_SUBSCRIBE_URL = "https://taxpayers.nationbuilder.com/subscribe";
+const ZAPIER_WEBHOOK = "https://hooks.zapier.com/hooks/catch/3173893/4o6xibt/";
 const POPUP_KEY = "wrl_popup_seen";
 
 function showPopup() {
@@ -153,39 +153,14 @@ lgpopForm.addEventListener("submit", (e) => {
   }
   lgpopError.hidden = true;
 
-  // 1. Save locally as backup
-  const leads = JSON.parse(localStorage.getItem("wrl_leads") || "[]");
-  leads.push({ firstName, lastName, email, postcode, ts: new Date().toISOString() });
-  localStorage.setItem("wrl_leads", JSON.stringify(leads));
+  // 1. Submit to Zapier webhook (fire-and-forget)
+  fetch(ZAPIER_WEBHOOK, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ first_name: firstName, last_name: lastName, email, postcode }),
+  }).catch(() => {});
 
-  // 2. Submit to NationBuilder via hidden form (fire-and-forget)
-  const iframe = Object.assign(document.createElement("iframe"), {
-    name: "nb-frame", style: "display:none"
-  });
-  document.body.appendChild(iframe);
-
-  const form = document.createElement("form");
-  form.method = "POST";
-  form.action = NB_SUBSCRIBE_URL;
-  form.target = "nb-frame";
-  form.style.display = "none";
-
-  [
-    ["signup[email]",      email],
-    ["signup[first_name]", firstName],
-    ["signup[last_name]",  lastName],
-    ["signup[zip]",        postcode],
-  ].forEach(([n, v]) => {
-    const inp = document.createElement("input");
-    inp.type = "hidden"; inp.name = n; inp.value = v;
-    form.appendChild(inp);
-  });
-
-  document.body.appendChild(form);
-  form.submit();
-  setTimeout(() => { form.remove(); iframe.remove(); }, 5000);
-
-  // 3. Show thank-you then close
+  // 2. Show thank-you then close
   lgpopForm.style.display = "none";
   lgpopThanks.hidden = false;
   setTimeout(() => hidePopup(true), 3500);
