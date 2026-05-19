@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wellingtonrichlist.nz/sitemap.xml
+Sitemap: https://www.wellingtonrichlist.nz/sitemap.xml
