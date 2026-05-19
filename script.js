@@ -156,8 +156,8 @@ lgpopForm.addEventListener("submit", (e) => {
   // 1. Submit to Zapier webhook (fire-and-forget)
   fetch(ZAPIER_WEBHOOK, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ first_name: firstName, last_name: lastName, email, postcode }),
+    mode: "no-cors",
+    body: new URLSearchParams({ first_name: firstName, last_name: lastName, email, postcode }),
   }).catch(() => {});
 
   // 2. Show thank-you then close
