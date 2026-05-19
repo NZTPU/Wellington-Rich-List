@@ -153,12 +153,25 @@ lgpopForm.addEventListener("submit", (e) => {
   }
   lgpopError.hidden = true;
 
-  // 1. Submit to Zapier webhook (fire-and-forget)
-  fetch(ZAPIER_WEBHOOK, {
-    method: "POST",
-    mode: "no-cors",
-    body: new URLSearchParams({ first_name: firstName, last_name: lastName, email, postcode }),
-  }).catch(() => {});
+  // 1. Submit to Zapier webhook via hidden iframe (bypasses CORS)
+  const zbFrame = Object.assign(document.createElement("iframe"), {
+    name: "zap-frame", style: "display:none"
+  });
+  document.body.appendChild(zbFrame);
+  const zbForm = document.createElement("form");
+  zbForm.method = "POST";
+  zbForm.action = ZAPIER_WEBHOOK;
+  zbForm.target = "zap-frame";
+  zbForm.style.display = "none";
+  [["first_name", firstName], ["last_name", lastName], ["email", email], ["postcode", postcode]]
+    .forEach(([n, v]) => {
+      const inp = document.createElement("input");
+      inp.type = "hidden"; inp.name = n; inp.value = v;
+      zbForm.appendChild(inp);
+    });
+  document.body.appendChild(zbForm);
+  zbForm.submit();
+  setTimeout(() => { zbForm.remove(); zbFrame.remove(); }, 5000);
 
   // 2. Show thank-you then close
   lgpopForm.style.display = "none";
